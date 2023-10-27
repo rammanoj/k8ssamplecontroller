@@ -1,0 +1,12 @@
+apiVersion: batch.tutorial.kubebuilder.io/v1
+kind: Manoj
+metadata:
+  labels:
+    app.kubernetes.io/name: manoj
+    app.kubernetes.io/instance: manoj-sample
+    app.kubernetes.io/part-of: project
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: project
+  name: manoj-sample
+spec:
+  # TODO(user): Add fields here

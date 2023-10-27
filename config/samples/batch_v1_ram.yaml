@@ -1,0 +1,12 @@
+apiVersion: batch.tutorial.kubebuilder.io/v1
+kind: Ram
+metadata:
+  labels:
+    app.kubernetes.io/name: ram
+    app.kubernetes.io/instance: ram-sample
+    app.kubernetes.io/part-of: project
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: project
+  name: ram-sample
+spec:
+  # TODO(user): Add fields here

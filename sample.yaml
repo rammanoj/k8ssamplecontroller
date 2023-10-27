@@ -1,0 +1,113 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/containerID: 2638c0261fa0c42c46867a7401f05225a04a4f774576abd49c6bf8834b4313c6
+    cni.projectcalico.org/podIP: 10.2.2.8/32
+    cni.projectcalico.org/podIPs: 10.2.2.8/32
+  creationTimestamp: "2023-10-27T18:16:05Z"
+  labels:
+    run: hello
+  name: hello
+  namespace: default
+  resourceVersion: "2321598"
+  uid: 0a4d047f-cb71-4765-beae-9b23feb8db30
+spec:
+  containers:
+  - image: ubuntu
+    imagePullPolicy: Always
+    name: hello
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-6xz2f
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: lke136265-200823-0e290b620000
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-6xz2f
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-27T18:16:05Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-27T18:16:05Z"
+    message: 'containers with unready status: [hello]'
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-27T18:16:05Z"
+    message: 'containers with unready status: [hello]'
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-27T18:16:05Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://292f4855145b1e3824bd3afae01b113c1b900a26ace35c1a2657727c06070854
+    image: docker.io/library/ubuntu:latest
+    imageID: docker.io/library/ubuntu@sha256:2b7412e6465c3c7fc5bb21d3e6f1917c167358449fecac8176c6e496e5c1f05f
+    lastState:
+      terminated:
+        containerID: containerd://292f4855145b1e3824bd3afae01b113c1b900a26ace35c1a2657727c06070854
+        exitCode: 0
+        finishedAt: "2023-10-27T18:16:48Z"
+        reason: Completed
+        startedAt: "2023-10-27T18:16:48Z"
+    name: hello
+    ready: false
+    restartCount: 3
+    started: false
+    state:
+      waiting:
+        message: back-off 40s restarting failed container=hello pod=hello_default(0a4d047f-cb71-4765-beae-9b23feb8db30)
+        reason: CrashLoopBackOff
+  hostIP: 192.168.159.11
+  phase: Running
+  podIP: 10.2.2.8
+  podIPs:
+  - ip: 10.2.2.8
+  qosClass: BestEffort
+  startTime: "2023-10-27T18:16:05Z"

@@ -1,0 +1,27 @@
+# permissions for end users to view rams.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: ram-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: project
+    app.kubernetes.io/part-of: project
+    app.kubernetes.io/managed-by: kustomize
+  name: ram-viewer-role
+rules:
+- apiGroups:
+  - batch.tutorial.kubebuilder.io
+  resources:
+  - rams
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - batch.tutorial.kubebuilder.io
+  resources:
+  - rams/status
+  verbs:
+  - get
